@@ -1,5 +1,7 @@
 package com.thoughtworks.parkinglot;
 
+import com.thoughtworks.parkinglot.exceptions.ParkingLotFullException;
+
 import java.util.ArrayList;
 
 public class ParkingLot {
@@ -11,7 +13,8 @@ public class ParkingLot {
         this.vehicles = new ArrayList<>(capacity);
     }
 
-    public void park(Parkable car) {
+    public void park(Parkable car) throws ParkingLotFullException {
+        if (vehicles.size() == capacity) throw new ParkingLotFullException();
         vehicles.add(car);
     }
 
