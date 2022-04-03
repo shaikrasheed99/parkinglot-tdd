@@ -23,4 +23,8 @@ public class ParkingLot {
     public boolean isParked(Parkable car) {
         return vehicles.contains(car);
     }
+
+    public void unpark(Parkable car) {
+        vehicles.remove(car);
+    }
 }

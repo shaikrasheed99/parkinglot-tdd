@@ -4,8 +4,7 @@ import com.thoughtworks.parkinglot.exceptions.CarAlreadyParkedException;
 import com.thoughtworks.parkinglot.exceptions.ParkingLotFullException;
 import org.junit.jupiter.api.Test;
 
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 public class ParkingLotTest {
     @Test
@@ -42,5 +41,17 @@ public class ParkingLotTest {
         parkingLot.park(carTwo);
 
         assertThrows(CarAlreadyParkedException.class, () -> parkingLot.park(carOne));
+    }
+
+    @Test
+    void shouldUnparkTheCarWhenTheCarIsParked() throws ParkingLotFullException, CarAlreadyParkedException {
+        int capacity = 1;
+        ParkingLot parkingLot = new ParkingLot(capacity);
+        Car car = new Car();
+
+        parkingLot.park(car);
+        parkingLot.unpark(car);
+
+        assertFalse(parkingLot.isParked(car));
     }
 }
