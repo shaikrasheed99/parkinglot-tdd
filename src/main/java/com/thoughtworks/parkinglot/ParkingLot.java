@@ -1,6 +1,7 @@
 package com.thoughtworks.parkinglot;
 
 import com.thoughtworks.parkinglot.exceptions.CarAlreadyParkedException;
+import com.thoughtworks.parkinglot.exceptions.CarNotParkedYetException;
 import com.thoughtworks.parkinglot.exceptions.ParkingLotFullException;
 
 import java.util.ArrayList;
@@ -24,7 +25,8 @@ public class ParkingLot {
         return vehicles.contains(car);
     }
 
-    public void unpark(Parkable car) {
+    public void unpark(Parkable car) throws CarNotParkedYetException {
+        if (!isParked(car)) throw new CarNotParkedYetException();
         vehicles.remove(car);
     }
 }
